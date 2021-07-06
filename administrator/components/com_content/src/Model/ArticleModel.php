@@ -16,7 +16,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormFactoryInterface;
 use Joomla\CMS\Helper\TagsHelper;
-use Joomla\CMS\Image\Image;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
@@ -685,11 +684,10 @@ class ArticleModel extends AdminModel implements WorkflowModelInterface
 	 */
 	public function save($data)
 	{
-		$input  = Factory::getApplication()->input;
+		$app  = Factory::getApplication();
 		$filter = \JFilterInput::getInstance();
 		$db     = $this->getDbo();
 		$user	= Factory::getUser();
-
 
 		if (isset($data['metadata']) && isset($data['metadata']['author']))
 		{
@@ -703,39 +701,8 @@ class ArticleModel extends AdminModel implements WorkflowModelInterface
 
 		if (isset($data['images']) && is_array($data['images']))
 		{
-
-			foreach($data['images'] as $i => $image)
-			{
-				$image = explode('#', $image)[0];
-
-				// Make sure the files exist
-				if(is_file(JPATH_ROOT . '/' . $image) && ($i === 'image_intro' || $i === 'image_fulltext'))
-				{
-					$imgObject = new Image(JPATH_ROOT . '/' . $image);
-					$imgObject->createMultipleSizes(['800x600', '600x400', '400x200']);
-				}
-			}
-
 			$registry = new Registry($data['images']);
-
 			$data['images'] = (string) $registry;
-		}
-
-		if(isset($data['articletext']))
-		{
-			// Get all images in content editor and remove duplicates
-			preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', $data['articletext'], $images);
-			$images = array_unique($images[1]);
-
-			foreach($images as $image)
-			{
-				// Make sure the files exist
-				if(is_file(JPATH_ROOT . '/' . $image))
-				{
-					$imgObject = new Image(JPATH_ROOT . '/' . $image);
-					$imgObject->createMultipleSizes(['800x600', '600x400', '400x200']);
-				}
-			}
 		}
 
 		$this->workflowBeforeSave();
@@ -785,7 +752,7 @@ class ArticleModel extends AdminModel implements WorkflowModelInterface
 
 		if (isset($data['urls']) && is_array($data['urls']))
 		{
-			$check = $input->post->get('jform', array(), 'array');
+			$check = $app->input->post->get('jform', array(), 'array');
 
 			foreach ($data['urls'] as $i => $url)
 			{
@@ -810,10 +777,10 @@ class ArticleModel extends AdminModel implements WorkflowModelInterface
 		}
 
 		// Alter the title for save as copy
-		if ($input->get('task') == 'save2copy')
+		if ($app->input->get('task') == 'save2copy')
 		{
 			$origTable = clone $this->getTable();
-			$origTable->load($input->getInt('id'));
+			$origTable->load($app->input->getInt('id'));
 
 			if ($data['title'] == $origTable->title)
 			{
@@ -831,7 +798,7 @@ class ArticleModel extends AdminModel implements WorkflowModelInterface
 		}
 
 		// Automatic handling of alias for empty fields
-		if (in_array($input->get('task'), array('apply', 'save', 'save2new')) && (!isset($data['id']) || (int) $data['id'] == 0))
+		if (in_array($app->input->get('task'), array('apply', 'save', 'save2new')) && (!isset($data['id']) || (int) $data['id'] == 0))
 		{
 			if ($data['alias'] == null)
 			{

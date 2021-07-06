@@ -13,7 +13,9 @@ namespace Joomla\Component\Contact\Administrator\Model;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\Helper\TagsHelper;
+use Joomla\CMS\Image\Image;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
@@ -171,6 +173,8 @@ class ContactModel extends AdminModel
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
+		$app = Factory::getApplication();
+
 		Form::addFieldPath(JPATH_ADMINISTRATOR . '/components/com_users/models/fields');
 
 		// Get the form.
@@ -292,7 +296,7 @@ class ContactModel extends AdminModel
 	 */
 	public function save($data)
 	{
-		$input = Factory::getApplication()->input;
+		$app = Factory::getApplication();
 
 		// Create new category, if needed.
 		$createCategory = true;
@@ -332,10 +336,10 @@ class ContactModel extends AdminModel
 		}
 
 		// Alter the name for save as copy
-		if ($input->get('task') == 'save2copy')
+		if ($app->input->get('task') == 'save2copy')
 		{
 			$origTable = clone $this->getTable();
-			$origTable->load($input->getInt('id'));
+			$origTable->load($app->input->getInt('id'));
 
 			if ($data['name'] == $origTable->name)
 			{

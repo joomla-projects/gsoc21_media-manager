@@ -18,7 +18,9 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Helper\MediaHelper;
 use Joomla\CMS\Helper\TagsHelper;
+use Joomla\CMS\Image\Image;
 use Joomla\CMS\Language\Associations;
 use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
@@ -246,7 +248,7 @@ class CategoryModel extends AdminModel
 	public function getForm($data = array(), $loadData = true)
 	{
 		$extension = $this->getState('category.extension');
-		$jinput = Factory::getApplication()->input;
+		$app = Factory::getApplication();
 
 		// A workaround to get the extension into the model for save requests.
 		if (empty($extension) && isset($data['extension']))
@@ -273,7 +275,7 @@ class CategoryModel extends AdminModel
 			$data['extension'] = $extension;
 		}
 
-		$categoryId = $jinput->get('id');
+		$categoryId = $app->input->get('id');
 		$parts      = explode('.', $extension);
 		$assetKey   = $categoryId ? $extension . '.category.' . $categoryId : $parts[0];
 
@@ -524,7 +526,7 @@ class CategoryModel extends AdminModel
 	public function save($data)
 	{
 		$table      = $this->getTable();
-		$input      = Factory::getApplication()->input;
+		$app      = Factory::getApplication();
 		$pk         = (!empty($data['id'])) ? $data['id'] : (int) $this->getState($this->getName() . '.id');
 		$isNew      = true;
 		$context    = $this->option . '.' . $this->name;
@@ -551,10 +553,10 @@ class CategoryModel extends AdminModel
 		}
 
 		// Alter the title for save as copy
-		if ($input->get('task') == 'save2copy')
+		if ($app->input->get('task') == 'save2copy')
 		{
 			$origTable = clone $this->getTable();
-			$origTable->load($input->getInt('id'));
+			$origTable->load($app->input->getInt('id'));
 
 			if ($data['title'] == $origTable->title)
 			{
