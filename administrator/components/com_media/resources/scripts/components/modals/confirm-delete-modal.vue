@@ -56,6 +56,8 @@ export default {
     deleteItem() {
       this.$store.dispatch('deleteSelectedItems');
       this.$store.commit(types.HIDE_CONFIRM_DELETE_MODAL);
+
+      this.$store.dispatch('getContents', this.$store.state.selectedDirectory);
     },
     /* Close the modal instance */
     close() {
