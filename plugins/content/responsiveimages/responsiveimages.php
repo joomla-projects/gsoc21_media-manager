@@ -108,26 +108,6 @@ class PlgContentResponsiveImages extends CMSPlugin
 	}
 
 	/**
-	 * Event that handles deletion of responsive images once original one gets deleted
-	 *
-	 * @param   string  $context  The context of the content passed to the plugin (added in 1.6).
-	 * @param   object  $article  A JTableContent object.
-	 *
-	 * @return  void
-	 *
-	 * @since   4.1.0
-	 */
-	public function onContentBeforeDelete($context, $article): void
-	{
-		// Remove responsive versions if file is an image
-		if ($context === "com_media.file" && MediaHelper::isImage($article->path))
-		{
-			$imgObj = new Image(JPATH_ROOT . '/images' . $article->path);
-			$imgObj->deleteMultipleSizes();
-		}
-	}
-
-	/**
 	 * Returns form images from data with specific context
 	 *
 	 * @param   string  $context  The context for the data
