@@ -517,6 +517,21 @@ class PlgEditorTinymce extends CMSPlugin
 			}
 		}
 
+		// Activate JImage plugin
+		$externalPlugins['jimage'] = HTMLHelper::_('script', 'plg_editors_tinymce/plugins/image/plugin.min.js', ['relative' => true, 'version' => 'auto', 'pathOnly' => true]);
+
+		Text::script('PLG_TINY_JIMAGE_ADD_SIZE');
+		Text::script('PLG_TINY_JIMAGE_DELETE_SIZE');
+		Text::script('PLG_TINY_JIMAGE_FIGURE_CAPTION');
+		Text::script('PLG_TINY_JIMAGE_FIGURE_CLASS');
+		Text::script('PLG_TINY_JIMAGE_IMAGE_CLASS');
+		Text::script('PLG_TINY_JIMAGE_LAZY_LOAD');
+		Text::script('PLG_TINY_JIMAGE_LOAD_TIME');
+		Text::script('PLG_TINY_JIMAGE_RESPONSIVE_IMAGES');
+		Text::script('PLG_TINY_JIMAGE_RESPONSIVE_SIZES');
+		Text::script('PLG_TINY_JIMAGE_WIDTH');
+		Text::script('PLG_TINY_JIMAGE_HEIGHT');
+
 		// Drag and drop Images always FALSE, reverting this allows for inlining the images
 		$allowImgPaste = false;
 		$dragdrop      = $levelParams->get('drag_drop', 1);
@@ -525,6 +540,7 @@ class PlgEditorTinymce extends CMSPlugin
 		{
 			$externalPlugins['jdragndrop'] = HTMLHelper::_('script', 'plg_editors_tinymce/plugins/dragdrop/plugin.min.js', ['relative' => true, 'version' => 'auto', 'pathOnly' => true]);
 			$uploadUrl                     = Uri::base(false) . 'index.php?option=com_media&format=json&task=api.files';
+
 
 			if ($this->app->isClient('site'))
 			{
