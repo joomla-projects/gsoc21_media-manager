@@ -47,7 +47,7 @@ every single img tag there and returns the updated content.
 **PR:** [#13](https://github.com/joomla-projects/gsoc21_media-manager/pull/13)
 
 ### Week 4
-**Tasks:** [#12](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/12)
+**Tasks:** [#12](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 I didn’t set a lot of tasks that bring a new feature this week since I had already worked on most of the functionality that has to be done till the first evaluation. 
 So what I really needed to do was to complete all the unfinished and unoptimized tasks from the previous weeks and to finally wrap up the responsive images with default 
@@ -58,7 +58,7 @@ sizes functionality. So the first thing that I did was to create reusable functi
 **PR:** [#14](https://github.com/joomla-projects/gsoc21_media-manager/pull/14)
 
 ### Week 5
-**Tasks:** [#15](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/15)
+**Tasks:** [#15](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 Over the previous weeks, I managed to add the functionality for generating responsive sized versions of an image and inserting srcset and sizes attributes to it. 
 But what if someone wants to have the images to be generated in sizes that are different than ours? That’s why I added some additional options to make it fully customizable:
@@ -72,7 +72,7 @@ So I added a radio button and dynamic form controls so that content authors can 
 **PR:** [#16](https://github.com/joomla-projects/gsoc21_media-manager/pull/16)
 
 ### Week 6
-**Tasks:** [#17](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/17)
+**Tasks:** [#17](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 The main goal of this week was to basically improve the form which is used to edit images in content editors by adding new form controls. But what will these form 
 controls do? Let’s try a scenario to understand that: 
@@ -91,7 +91,7 @@ I tried to solve this week. The second is more of a feature than a problem: addi
 **PR:** [#18](https://github.com/joomla-projects/gsoc21_media-manager/pull/18)
 
 ### Week 7
-**Tasks:** [#19](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/7)
+**Tasks:** [#19](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 So during the previous weeks, I managed to add the Responsive Images with Art Direction functionality, and I thought that it was fully customizable until 
 I got this feedback from the Joomla community in the comment section of my PR to the core:
@@ -107,7 +107,7 @@ to implement this for plugin settings where users get to define the “new defau
 **PR:** [#20](https://github.com/joomla-projects/gsoc21_media-manager/pull/20)
 
 ### Week 8
-**Tasks:** [#21](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/21)
+**Tasks:** [#21](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 Well, I have to say that this week’s task was one of the most interesting tasks that I’ve done so far, I guess this is because I got to dive into the codebase of 
 media manager which is developed with VueJS. One of the improvements was to add appropriate icons for video and audio files instead of a default file icon:
@@ -121,7 +121,7 @@ I used the [Media Element](https://github.com/mediaelement/mediaelement) plugin 
 **PR:** [#22](https://github.com/joomla-projects/gsoc21_media-manager/pull/22)
 
 ### Week 9
-**Tasks:** [#23](https://github.com/joomla-projects/gsoc21_media-manager/issues/6), [#7](https://github.com/joomla-projects/gsoc21_media-manager/issues/23)
+**Tasks:** [#23](https://github.com/joomla-projects/gsoc21_media-manager/issues/6)
 
 Sometimes, responsive versions of an image become useless. Imagine this scenario: you insert an image to the article content and responsive images get generated, 
 everything is perfect so far. Then you decide not to use this image anymore in your content or you replace it with another image or you delete this image from your 
